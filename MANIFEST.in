@@ -1,0 +1,12 @@
+include README.md
+include LICENSE
+include requirements.txt
+include environment.yml
+recursive-include data *.py
+recursive-include models *.py
+recursive-include options *.py
+recursive-include util *.py
+recursive-include scripts *.py *.sh
+recursive-include datasets *.py *.sh
+recursive-include docs *.md *.txt
+recursive-include imgs *
