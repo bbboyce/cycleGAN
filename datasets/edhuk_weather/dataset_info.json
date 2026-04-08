@@ -1,0 +1,13 @@
+{
+  "name": "EdUHK Rain vs Sunny",
+  "description": "Hong Kong Education University weather dataset",
+  "source": "EdUHK Campus",
+  "domain_A": "rainy",
+  "domain_B": "sunny",
+  "image_count": {
+    "trainA": 0,
+    "trainB": 0,
+    "testA": 0,
+    "testB": 0
+  }
+}

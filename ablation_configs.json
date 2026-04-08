@@ -1,0 +1,94 @@
+{
+  "base_experiment": {
+    "name": "Full CycleGAN (Baseline)",
+    "description": "All loss components enabled",
+    "lambda_A": 10.0,
+    "lambda_B": 10.0,
+    "lambda_identity": 0.5,
+    "lambda_gan_a": 1.0,
+    "lambda_gan_b": 1.0,
+    "lambda_cycle_a": 1.0,
+    "lambda_cycle_b": 1.0
+  },
+  "experiments": [
+    {
+      "name": "No Cycle Loss",
+      "description": "Remove cycle consistency loss (lambda_A=0, lambda_B=0)",
+      "lambda_A": 0.0,
+      "lambda_B": 0.0,
+      "lambda_identity": 0.5,
+      "lambda_gan_a": 1.0,
+      "lambda_gan_b": 1.0,
+      "lambda_cycle_a": 0.0,
+      "lambda_cycle_b": 0.0
+    },
+    {
+      "name": "No Identity Loss",
+      "description": "Remove identity loss (lambda_identity=0)",
+      "lambda_A": 10.0,
+      "lambda_B": 10.0,
+      "lambda_identity": 0.0,
+      "lambda_gan_a": 1.0,
+      "lambda_gan_b": 1.0,
+      "lambda_cycle_a": 1.0,
+      "lambda_cycle_b": 1.0
+    },
+    {
+      "name": "Cycle Loss Only",
+      "description": "Only cycle loss, no GAN loss or identity loss",
+      "lambda_A": 10.0,
+      "lambda_B": 10.0,
+      "lambda_identity": 0.0,
+      "lambda_gan_a": 0.0,
+      "lambda_gan_b": 0.0,
+      "lambda_cycle_a": 1.0,
+      "lambda_cycle_b": 1.0
+    },
+    {
+      "name": "Half Cycle Weight",
+      "description": "Reduce cycle loss weight (lambda_A=5, lambda_B=5)",
+      "lambda_A": 5.0,
+      "lambda_B": 5.0,
+      "lambda_identity": 0.5,
+      "lambda_gan_a": 1.0,
+      "lambda_gan_b": 1.0,
+      "lambda_cycle_a": 0.5,
+      "lambda_cycle_b": 0.5
+    },
+    {
+      "name": "Double Cycle Weight",
+      "description": "Increase cycle loss weight (lambda_A=20, lambda_B=20)",
+      "lambda_A": 20.0,
+      "lambda_B": 20.0,
+      "lambda_identity": 0.5,
+      "lambda_gan_a": 1.0,
+      "lambda_gan_b": 1.0,
+      "lambda_cycle_a": 2.0,
+      "lambda_cycle_b": 2.0
+    }
+  ],
+  "training_config": {
+    "dataset_mode": "unaligned",
+    "model": "cycle_gan",
+    "netG": "resnet_9blocks",
+    "netD": "basic",
+    "gan_mode": "lsgan",
+    "pool_size": 50,
+    "lr": 0.0002,
+    "beta1": 0.5,
+    "num_threads": 4,
+    "batch_size": 1,
+    "load_size": 286,
+    "crop_size": 256,
+    "preprocess": "resize_and_crop",
+    "no_flip": false,
+    "display_freq": 400,
+    "save_latest_freq": 5000,
+    "save_epoch_freq": 5,
+    "n_epochs": 100,
+    "n_epochs_decay": 100,
+    "epoch_count": 1,
+    "checkpoints_dir": "./checkpoints",
+    "results_dir": "./results_ablation"
+  }
+}
