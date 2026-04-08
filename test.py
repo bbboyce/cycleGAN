@@ -44,7 +44,12 @@ except ImportError:
 
 if __name__ == "__main__":
     opt = TestOptions().parse()  # get test options
-    opt.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    if torch.cuda.is_available():
+        opt.device = torch.device("cuda:0")
+    elif torch.backends.mps.is_available():
+        opt.device = torch.device("mps")
+    else:
+        opt.device = torch.device("cpu")
     # hard-code some parameters for test
     opt.num_threads = 0  # test code only supports num_threads = 0
     opt.batch_size = 1  # test code only supports batch_size = 1

@@ -298,6 +298,9 @@ class BaseModel(ABC):
                     else:
                         net.to(0)
                         print(f"Initialized network {name} with device cuda:0")
+                elif torch.backends.mps.is_available():
+                    net.to("mps")
+                    print(f"Initialized network {name} with device mps")
                 else:
                     net.to("cpu")
                     print(f"Initialized network {name} with device cpu")
